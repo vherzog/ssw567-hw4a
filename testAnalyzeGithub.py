@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Updated Jan 21, 2018
-The primary goal of this file is to demonstrate a simple unittest implementation
+Unit tests for the analyzeGithub python functions.
 
-@author: jrr
-@author: rk
+@author: vherzog
 """
 
 import unittest
@@ -46,6 +44,7 @@ class TestAnalyzeGithub(unittest.TestCase):
             check_rate_limit(
                 {"message": "API rate limit exceeded. Please wait to try again..."}
             )
+
 
 if __name__ == '__main__':
     print('Running unit tests')
