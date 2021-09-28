@@ -19,6 +19,7 @@ Questions:
 - What error type/message should the function raise?
 """
 import requests
+from tabulate import tabulate
 
 
 def check_input(user_id):
@@ -42,10 +43,7 @@ def list_repos(user_id):
     for repo in repos:
         repo_name = repo["full_name"]
         commit_count = count_commits(user_id, repo_name)
-        repo_list.append({
-            "repo": repo_name,
-            "commits": commit_count
-        })
+        repo_list.append([repo_name, commit_count])
     return repo_list
 
 
@@ -55,17 +53,14 @@ def count_commits(user_id, repo_name):
     return len(commits)
 
 
-def print_results(repo, commits):
-    print(f"Repo: {repo} Number of commits: {commits}")
-
-
 def analyze_github(user_id):
     check_input(user_id)
 
     repos_list = list_repos(user_id)
-    for repo in repos_list:
-        print_results(repo["repo"], repo["commits"])
-
+    # START HERE
+    print(tabulate(repos_list,
+                   headers=['Repository', 'Commits'],
+                   tablefmt='orgtbl'))
     return repos_list
 
 
