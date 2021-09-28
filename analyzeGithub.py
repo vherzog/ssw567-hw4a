@@ -20,6 +20,7 @@ Questions:
 """
 import requests
 
+
 def check_input(user_id):
     if not isinstance(user_id, str):
         raise ValueError("Please enter User ID as string")
@@ -42,8 +43,8 @@ def list_repos(user_id):
         repo_name = repo["full_name"]
         commit_count = count_commits(user_id, repo_name)
         repo_list.append({
-            "repository_name": repo_name,
-            "commit_count": commit_count
+            "repo": repo_name,
+            "commits": commit_count
         })
     return repo_list
 
@@ -54,11 +55,17 @@ def count_commits(user_id, repo_name):
     return len(commits)
 
 
+def print_results(repo, commits):
+    print(f"Repo: {repo} Number of commits: {commits}")
+
+
 def analyze_github(user_id):
     check_input(user_id)
 
     repos_list = list_repos(user_id)
-    # print(repos_list)
+    for repo in repos_list:
+        print_results(repo["repo"], repo["commits"])
+
     return repos_list
 
 
