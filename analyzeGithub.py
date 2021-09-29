@@ -27,29 +27,34 @@ def check_input(user_id):
         raise ValueError("Please enter User ID as string")
 
 
-def check_rate_limit(response):
+def check_message(response):
     if isinstance(response, dict):
-        if "message" in response and "API rate limit exceeded" in response["message"]:
-            raise Exception(
-                "ERROR: Github API Rate limit exceeded. Please wait before running again."
-            )
+        if "message" in response:
+            if  "API rate limit exceeded" in response["message"]:
+                raise Exception(
+                    "ERROR: Github API Rate limit exceeded. Please wait before running again."
+                )
+            elif "Not Found" in response["message"]:
+                raise Exception(
+                    "ERROR: Results not found."
+                )
     return response
 
 
 def list_repos(user_id):
     repo_list = []
     query_url = f"https://api.github.com/users/{user_id}/repos"
-    repos = check_rate_limit(requests.get(query_url).json())
+    repos = check_message(requests.get(query_url).json())
     for repo in repos:
         repo_name = repo["full_name"]
-        commit_count = count_commits(user_id, repo_name)
+        commit_count = count_commits(repo_name)
         repo_list.append([repo_name, commit_count])
     return repo_list
 
 
-def count_commits(user_id, repo_name):
-    query_url = f"https://api.github.com/repos/{user_id}/{repo_name}/commits"
-    commits = requests.get(query_url).json()
+def count_commits(repo_name):
+    query_url = f"https://api.github.com/repos/{repo_name}/commits"
+    commits = check_message(requests.get(query_url).json())
     return len(commits)
 
 
