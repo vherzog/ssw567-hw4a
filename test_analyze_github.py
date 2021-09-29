@@ -7,7 +7,8 @@ Unit tests for the analyze_github python functions.
 
 import unittest
 
-from analyze_github import check_input, check_message, list_repos, count_commits, analyze_github
+# list_repos, count_commits
+from analyze_github import check_input, check_message, analyze_github
 
 GITHUB_USER_ID = "vherzog"
 EXAMPLE_RESPONSE = [{'test key': 'test value'}]
@@ -48,4 +49,5 @@ class TestAnalyzeGithub(unittest.TestCase):
 
 if __name__ == '__main__':
     print('Running unit tests')
+    unittest.main()
     unittest.main()
