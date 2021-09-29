@@ -30,7 +30,7 @@ def check_input(user_id):
 def check_message(response):
     if isinstance(response, dict):
         if "message" in response:
-            if  "API rate limit exceeded" in response["message"]:
+            if "API rate limit exceeded" in response["message"]:
                 raise Exception(
                     "ERROR: Github API Rate limit exceeded. Please wait before running again."
                 )
