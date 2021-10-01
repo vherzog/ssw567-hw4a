@@ -106,10 +106,10 @@ class TestAnalyzeGithub(unittest.TestCase):
         with self.assertRaises(Exception):
             count_commits(GITHUB_REPO_NOT_EXIST)
 
-    # def test_list_repos_exist(self):
-    #     """Test output when repo does not exist"""
-    #     with self.assertRaises(Exception):
-    #         list_repos(GITHUB_USER_ID)
+    def test_list_repos_not_exist(self):
+        """Test output when repo does not exist"""
+        with self.assertRaises(Exception):
+            list_repos(GITHUB_USER_ID_NOT_EXIST)
 
 
 if __name__ == '__main__':
