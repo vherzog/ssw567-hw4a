@@ -14,7 +14,7 @@ that are in each of the listed repositories.
 Questions:
 - What type is the input? (string?)
 - # of commits on the master/main branch? Or all branches?
-- What should the format of the list output be? A list of dict? A list of tuples?
+- What should the format of the output be? A list of dict? A list of tuples? A print statement?
 - What should the function do when hitting rate limiting?
 - What error type/message should the function raise?
 """
