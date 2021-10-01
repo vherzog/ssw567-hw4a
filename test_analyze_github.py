@@ -110,13 +110,13 @@ class TestAnalyzeGithub(unittest.TestCase):
         """Test list_repos output when user does exist"""
         try:
             self.assertIsInstance(
-                list_repos(GITHUB_REPO),
+                list_repos(GITHUB_USER_ID),
                 list,
                 "Should return a list of repos"
             )
         except Exception:
             self.fail(
-                f"count_commits({GITHUB_REPO}) raised Exception unexpectedly!")
+                f"count_commits({GITHUB_USER_ID}) raised Exception unexpectedly!")
 
     def test_list_repos_not_exist(self):
         """Test list_repos output when user does not exist"""
