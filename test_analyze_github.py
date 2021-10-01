@@ -20,11 +20,6 @@ EXAMPLE_RESPONSE = [{'test key': 'test value'}]
 class TestAnalyzeGithub(unittest.TestCase):
     """TestCase unittest class to test analyze_github functionality"""
 
-    def __init__(self):
-        self.analyze_github_valid_user_response = analyze_github(
-            GITHUB_USER_ID)
-        self.analyze_github_invalid_user_response = analyze_github(
-            GITHUB_USER_ID_NOT_EXIST)
 
     def test_user_id_valid_exist(self):
         """Test outputs when GitHub user ID entered is valid and exists."""
@@ -40,7 +35,7 @@ class TestAnalyzeGithub(unittest.TestCase):
 
         try:
             self.assertIsInstance(
-                self.analyze_github_valid_user_response,
+                analyze_github(GITHUB_USER_ID),
                 list,
                 "No output expected."
             )
@@ -70,7 +65,7 @@ class TestAnalyzeGithub(unittest.TestCase):
                 f"check_input({GITHUB_USER_ID_NOT_EXIST}) raised Exception unexpectedly!")
 
         with self.assertRaises(Exception):
-            self.analyze_github_invalid_user_response
+            analyze_github(GITHUB_USER_ID_NOT_EXIST)
 
     def test_check_message_valid(self):
         """Test check_message output when API request response is successful."""
