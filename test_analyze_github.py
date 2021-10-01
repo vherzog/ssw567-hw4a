@@ -20,8 +20,8 @@ EXAMPLE_RESPONSE = [{'test key': 'test value'}]
 class TestAnalyzeGithub(unittest.TestCase):
     """TestCase unittest class to test analyze_github functionality"""
 
-    def test_user_id_valid_exist(self):
-        """Test outputs when GitHub user ID entered is valid and exists."""
+    def test_check_input_valid_exist(self):
+        """Test check_input output when GitHub user ID entered is valid and exists."""
         try:
             self.assertEqual(
                 check_input(GITHUB_USER_ID),
@@ -42,16 +42,16 @@ class TestAnalyzeGithub(unittest.TestCase):
             self.fail(
                 f"check_input({GITHUB_USER_ID}) raised Exception unexpectedly!")
 
-    def test_user_id_invalid(self):
-        """Test outputs when the GitHub user ID entered is invalid."""
+    def test_check_input_invalid(self):
+        """Test check_input output when the GitHub user ID entered is invalid."""
         with self.assertRaises(Exception):
             check_input(123)
 
         with self.assertRaises(Exception):
             analyze_github(123)
 
-    def test_user_id_valid_not_exist(self):
-        """Test outputs when the GitHub user ID entered
+    def test_check_input_valid_not_exist(self):
+        """Test check_input output when the GitHub user ID entered
             is valid but does not exist."""
         try:
             self.assertEqual(
@@ -106,8 +106,20 @@ class TestAnalyzeGithub(unittest.TestCase):
         with self.assertRaises(Exception):
             count_commits(GITHUB_REPO_NOT_EXIST)
 
+    def test_list_repos_exist(self):
+        """Test list_repos output when user does exist"""
+        try:
+            self.assertIsInstance(
+                list_repos(GITHUB_REPO),
+                list,
+                "Should return a list of repos"
+            )
+        except Exception:
+            self.fail(
+                f"count_commits({GITHUB_REPO}) raised Exception unexpectedly!")
+
     def test_list_repos_not_exist(self):
-        """Test output when repo does not exist"""
+        """Test list_repos output when user does not exist"""
         with self.assertRaises(Exception):
             list_repos(GITHUB_USER_ID_NOT_EXIST)
 

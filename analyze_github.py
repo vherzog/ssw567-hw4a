@@ -62,11 +62,9 @@ def analyze_github(user_id):
     check_input(user_id)
 
     repos_list = list_repos(user_id)
-    # START HERE
     print(tabulate(repos_list,
                    headers=['Repository', 'Commits'],
                    tablefmt='orgtbl'))
-    # print(type(repos_list))
     return repos_list
 
 
