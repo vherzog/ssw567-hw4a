@@ -20,7 +20,6 @@ EXAMPLE_RESPONSE = [{'test key': 'test value'}]
 class TestAnalyzeGithub(unittest.TestCase):
     """TestCase unittest class to test analyze_github functionality"""
 
-
     def test_user_id_valid_exist(self):
         """Test outputs when GitHub user ID entered is valid and exists."""
         try:
