@@ -24,7 +24,7 @@ from tabulate import tabulate
 
 def check_input(user_id):
     if not isinstance(user_id, str):
-        raise ValueError("Please enter User ID as string")
+        raise Exception("Please enter User ID as string")
 
 
 def check_message(response):
@@ -66,8 +66,10 @@ def analyze_github(user_id):
     print(tabulate(repos_list,
                    headers=['Repository', 'Commits'],
                    tablefmt='orgtbl'))
+    # print(type(repos_list))
     return repos_list
 
 
 if __name__ == "__main__":
     analyze_github("vherzog")
+    # analyze_github("abc-do-re-me")
