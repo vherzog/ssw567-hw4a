@@ -502,15 +502,6 @@ class TestAnalyzeGithub(unittest.TestCase):
             self.fail(
                 f"check_input({GITHUB_USER_ID}) raised Exception unexpectedly!")
 
-        # try:
-        #     self.assertIsInstance(
-        #         analyze_github(GITHUB_USER_ID),
-        #         list,
-        #         "No output expected."
-        #     )
-        # except Exception:
-        #     self.fail(
-        #         f"check_input({GITHUB_USER_ID}) raised Exception unexpectedly!")
 
     def test_check_input_invalid(self):
         """Test check_input output when the GitHub user ID entered is invalid."""
@@ -533,8 +524,6 @@ class TestAnalyzeGithub(unittest.TestCase):
             self.fail(
                 f"check_input({GITHUB_USER_ID_NOT_EXIST}) raised Exception unexpectedly!")
 
-        # with self.assertRaises(Exception):
-        #     analyze_github(GITHUB_USER_ID_NOT_EXIST)
 
     def test_check_message_valid(self):
         """Test check_message output when API request response is successful."""
