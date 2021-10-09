@@ -508,9 +508,6 @@ class TestAnalyzeGithub(unittest.TestCase):
         with self.assertRaises(Exception):
             check_input(123)
 
-        # with self.assertRaises(Exception):
-        #     analyze_github(123)
-
     def test_check_input_valid_not_exist(self):
         """Test check_input output when the GitHub user ID entered
             is valid but does not exist."""
