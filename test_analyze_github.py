@@ -10,37 +10,37 @@ Unit tests for the analyze_github python functions.
 import unittest
 from analyze_github import check_input, check_message, analyze_github, count_commits, list_repos
 
-GITHUB_USER_ID = "vherzog"
-GITHUB_USER_ID_NOT_EXIST = "abc-do-re-me"
-GITHUB_REPO = f"{GITHUB_USER_ID}/ssw567-hw4a"
-GITHUB_REPO_NOT_EXIST = f"{GITHUB_USER_ID_NOT_EXIST}/fakerepo"
-EXAMPLE_RESPONSE = [{'test key': 'test value'}]
-
 
 class TestAnalyzeGithub(unittest.TestCase):
     """TestCase unittest class to test analyze_github functionality"""
+    def setUp(self):
+        self.GITHUB_USER_ID = "vherzog"
+        self.GITHUB_USER_ID_NOT_EXIST = "abc-do-re-me"
+        self.GITHUB_REPO = f"{self.GITHUB_USER_ID}/ssw567-hw4a"
+        self.GITHUB_REPO_NOT_EXIST = f"{self.GITHUB_USER_ID_NOT_EXIST}/fakerepo"
+        self.EXAMPLE_RESPONSE = [{'test key': 'test value'}]
 
     def test_check_input_valid_exist(self):
         """Test check_input output when GitHub user ID entered is valid and exists."""
         try:
             self.assertEqual(
-                check_input(GITHUB_USER_ID),
+                check_input(self.GITHUB_USER_ID),
                 None,
                 "No output expected."
             )
         except Exception:
             self.fail(
-                f"check_input({GITHUB_USER_ID}) raised Exception unexpectedly!")
+                f"check_input({self.GITHUB_USER_ID}) raised Exception unexpectedly!")
 
         try:
             self.assertIsInstance(
-                analyze_github(GITHUB_USER_ID),
+                analyze_github(self.GITHUB_USER_ID),
                 list,
                 "No output expected."
             )
         except Exception:
             self.fail(
-                f"check_input({GITHUB_USER_ID}) raised Exception unexpectedly!")
+                f"check_input({self.GITHUB_USER_ID}) raised Exception unexpectedly!")
 
     def test_check_input_invalid(self):
         """Test check_input output when the GitHub user ID entered is invalid."""
@@ -55,28 +55,28 @@ class TestAnalyzeGithub(unittest.TestCase):
             is valid but does not exist."""
         try:
             self.assertEqual(
-                check_input(GITHUB_USER_ID_NOT_EXIST),
+                check_input(self.GITHUB_USER_ID_NOT_EXIST),
                 None,
                 "No output expected."
             )
         except Exception:
             self.fail(
-                f"check_input({GITHUB_USER_ID_NOT_EXIST}) raised Exception unexpectedly!")
+                f"check_input({self.GITHUB_USER_ID_NOT_EXIST}) raised Exception unexpectedly!")
 
         with self.assertRaises(Exception):
-            analyze_github(GITHUB_USER_ID_NOT_EXIST)
+            analyze_github(self.GITHUB_USER_ID_NOT_EXIST)
 
     def test_check_message_valid(self):
         """Test check_message output when API request response is successful."""
         try:
             self.assertEqual(
-                check_message(EXAMPLE_RESPONSE),
-                EXAMPLE_RESPONSE,
+                check_message(self.EXAMPLE_RESPONSE),
+                self.EXAMPLE_RESPONSE,
                 "Response should be returned as is."
             )
         except Exception:
             self.fail(
-                f"check_message({EXAMPLE_RESPONSE}) raised Exception unexpectedly!")
+                f"check_message({self.EXAMPLE_RESPONSE}) raised Exception unexpectedly!")
 
     def test_check_message_rate_limit(self):
         """Test check_message output when hitting GitHub API rate limiting."""
@@ -93,35 +93,35 @@ class TestAnalyzeGithub(unittest.TestCase):
         """Test count_commits output when repo exists"""
         try:
             self.assertGreaterEqual(
-                count_commits(GITHUB_REPO),
+                count_commits(self.GITHUB_REPO),
                 1,
                 "Should return a list with length >= 1"
             )
         except Exception:
             self.fail(
-                f"count_commits({GITHUB_REPO}) raised Exception unexpectedly!")
+                f"count_commits({self.GITHUB_REPO}) raised Exception unexpectedly!")
 
     def test_count_commits_not_exist(self):
         """Test count_commits output when repo does not exist"""
         with self.assertRaises(Exception):
-            count_commits(GITHUB_REPO_NOT_EXIST)
+            count_commits(self.GITHUB_REPO_NOT_EXIST)
 
     def test_list_repos_exist(self):
         """Test list_repos output when user does exist"""
         try:
             self.assertIsInstance(
-                list_repos(GITHUB_USER_ID),
+                list_repos(self.GITHUB_USER_ID),
                 list,
                 "Should return a list of repos"
             )
         except Exception:
             self.fail(
-                f"count_commits({GITHUB_USER_ID}) raised Exception unexpectedly!")
+                f"count_commits({self.GITHUB_USER_ID}) raised Exception unexpectedly!")
 
     def test_list_repos_not_exist(self):
         """Test list_repos output when user does not exist"""
         with self.assertRaises(Exception):
-            list_repos(GITHUB_USER_ID_NOT_EXIST)
+            list_repos(self.GITHUB_USER_ID_NOT_EXIST)
 
 
 if __name__ == '__main__':
