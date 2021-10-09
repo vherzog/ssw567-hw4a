@@ -1,5 +1,7 @@
 # SSW 567: Software Testing, Quality Assurance and Maintenance
-This repo houses SSW 567 HW4.
+This repo houses the source code for SSW 567 homeworks:
+* HW 04a - Develop with the Perspective of the Tester in mind
+* HW 05a - Isolate External Dependencies
 
 ### Author: Veronica Herzog
 
