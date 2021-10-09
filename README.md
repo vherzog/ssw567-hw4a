@@ -5,4 +5,4 @@ This repo houses the source code for SSW 567 homeworks:
 
 ### Author: Veronica Herzog
 
-[![Build Status](https://app.travis-ci.com/vherzog/ssw567-hw4a.svg?branch=main)](https://app.travis-ci.com/vherzog/ssw567-hw4a)
+[![Build Status](https://app.travis-ci.com/vherzog/ssw567-hw4a.svg?branch=HW05a_Mocking)](https://app.travis-ci.com/vherzog/ssw567-hw4a)
